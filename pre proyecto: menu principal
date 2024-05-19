@@ -26,90 +26,306 @@ typedef struct
   int valor;
   string tipo2;
   int energia;
-  string contenedor;
+  int contenedor;
 }tObj;
+//Lista ambiente
+list<tAmb> listaAmbiente;
+//Lista Razas
+list<tRaza> listaRazas;
+//Lista Objetos
+list<tObj> listaObjetos;
 int main() {
   cout<<"Algoritmos y Esctructura de Datos"<<"\n";
   cout<<"Elaborado por Manuel Rosales"<<"\n";
-  cout<<"------------------------------------"<<"\n";
+  cout<<"----------------------------------"<<"\n";
   cout<<"Proyecto: Invasión Extraterreste"<<"\n";
-  cout<<"------------------------------------"<<"\n";
-  //Ingresar nuevo ambiente
-  cout<<"Ingrese el nombre del ambiente: "<<"\n";
-  string nombreA;
-  cin>>nombreA;
-  tAmb nuevoAmbiente;
-  nuevoAmbiente.nombre=nombreA;
-  list<tAmb> listaAmbiente;
+  cout<<"----------------------------------"<<"\n";
+  cout<<"        ""BIENVENIDO SOLDADO"<<endl;
+
+  int x;int y;int z; int w;
+  x=0;
+  while(x == 0){
+      cout<<"------------------------------------"<<"\n";
+      cout<<"          ""Menu Principal"<<endl;
+      cout<<"------------------------------------"<<"\n";
+      cout<<"- Ambiente (1)"<<endl;
+      cout<<"- Razas (2)"<<endl;
+      cout<<"- Objetos (3)"<<endl;
+      cout<<"- Soldados (4)"<<endl;
+      cin>>x;
+      switch(x);
+      if(x==1){
+          
+        y=0;
+        while(y == 0){
+            cout<<"- Crear Ambiente (1)"<<endl;
+            cout<<"- Mostrar Ambientes (2)"<<endl;
+            cout<<"- Modificar un Ambiente (3)"<<endl;
+            cout<<"- Eliminar un Ambiente (4)"<<endl;
+            cout<<"- Regresar al Menu Principal (5)"<<endl;
+            cin>>y;
+            switch(y);
+            if(y==1){
+                //Ingresar nuevo ambiente
+                cout<<"Ingrese el nombre del ambiente: "<<"\n";
+                string nombreA;
+                cin>>nombreA;
+                tAmb nuevoAmbiente;
+                nuevoAmbiente.nombre=nombreA;
+                
   
-  //ambientes predeterminados
-  listaAmbiente.push_back({"Tierra"});
-  listaAmbiente.push_back({"Marte"});
-  listaAmbiente.push_back({"Viltrum"});
-  listaAmbiente.push_back(nuevoAmbiente);
-  
-  //mostrar la lista completa
-  cout<<"lista de ambientes: \n";
-  for(const auto& amb : listaAmbiente){
-      cout<<amb.nombre<<"\n";
+                //ambientes predeterminados
+                listaAmbiente.push_back({"Tierra"});
+                listaAmbiente.push_back({"Marte"});
+                listaAmbiente.push_back({"Viltrum"});
+                listaAmbiente.push_back(nuevoAmbiente);
+                cout<<"Ambiente creado exitosamente"<<endl;
+                y=0;
+                
+            }
+            if(y==2){
+                //mostrar la lista completa de ambientes
+                cout<<"lista de ambientes: \n";
+                for(const auto& amb : listaAmbiente){
+                    cout<<amb.nombre<<"\n";
+                }
+                y=0;    
+            }
+            if(y==3){
+                string ambmod;
+                cout<<"Ingrese el nombre del ambiente que desea modificar: "<<endl;
+                cin>>ambmod;
+                
+                for(auto& amb : listaAmbiente){
+                    if (amb.nombre==ambmod){
+                        cout<<"Ingrese el nuevo nombre del ambiente"<<endl;
+                        cin>>amb.nombre;
+                        cout<<"Ambiente modificado exitosamente"<<endl;
+                        break;
+                    }
+                }
+                y=0;
+            }
+            if(y==4){
+                cout<<"Ingrese el nombre del ambiente a eliminar: "<<endl;
+                string ambdelete;
+                cin>>ambdelete;
+                for (auto i = listaAmbiente.begin(); i!=listaAmbiente.end(); ++i){
+                    if (i->nombre == ambdelete){
+                        listaAmbiente.erase(i);
+                        break;
+                        cout<<"Ambiente eliminado exitosamente"<<endl;
+                    }
+                    else{
+                        cout<<"El Ambiente no se encuentra en la lista";
+                    }
+                }
+                y=0;
+            }
+            if(y==5){
+                x=0;
+            }
+            
+        }
+      }
+      if(x==2){
+          
+        z=0;
+        while(z==0){
+            cout<<"- Crear Raza (1)"<<endl;
+            cout<<"- Mostrar Razas (2)"<<endl;
+            cout<<"- Modificar una Raza (3)"<<endl;
+            cout<<"- Eliminar Raza (4)"<<endl;
+            cout<<"- Regresar al Menu Principal (5)"<<endl;
+            cin>>z;
+            switch(z);
+            
+            if(z==1){
+                //Ingresar nueva Raza  
+                cout<<"Ingrese el nombre de la raza: "<<"\n";
+                string nombreR;
+                cin>>nombreR;
+                tRaza nuevaRaza;
+                nuevaRaza.nombre=nombreR;
+                cout<<"Ingrese los puntos vida de la raza: "<<"\n";
+                int vida;
+                cin>>vida;
+                nuevaRaza.vida=vida;
+                cout<<"Ingrese los puntos de energia de la raza de la raza: "<<"\n";
+                int energiaR;
+                cin>>energiaR;
+                nuevaRaza.energia=energiaR;
+                cout<<"Ingrese el ambiente de la raza: "<<"\n";
+                string ambiente;
+                cin>>ambiente;
+                nuevaRaza.ambiente=ambiente;
+                
+                //Razas predeterminadas
+                listaRazas.push_back({"Humano", 100, 100, "Tierra"});
+                listaRazas.push_back({"Marciano", 120, 90, "Marte"});
+                listaRazas.push_back({"Viltrumita", 100, 130, "Viltrum"});
+                listaRazas.push_back(nuevaRaza);
+                cout<<"Raza creada exitosamente"<<endl;
+                z=0;
+            }
+            if(z==2){
+                //Mostrar la lista de las razas
+                cout<<"lista de razas: \n";
+                for(const auto& raza : listaRazas){
+                  cout<<raza.nombre<<", "<<raza.vida<<", "<<raza.energia<<", "<<raza.ambiente<<"\n";
+                }
+                z=0;
+            }
+            if(z==3){
+                string razamod;
+                cout<<"Ingrese el nombre de la raza que desea modificar: "<<endl;
+                cin>>razamod;
+                
+                for(auto& raza : listaRazas){
+                    if (raza.nombre==razamod){
+                        cout<<"Ingrese el nuevo nombre de la raza"<<endl;
+                        cin>>raza.nombre;
+                        cout<<"Ingrese la nueva vida de la raza"<<endl;
+                        cin>>raza.vida;
+                        cout<<"Ingrese la nueva energia de la raza"<<endl;
+                        cin>>raza.energia;
+                        cout<<"Ingrese el nuevo ambiente de la raza"<<endl;
+                        cin>>raza.ambiente;
+                        cout<<"Raza modificada exitosamente"<<endl;
+                        break;
+                    }
+                }
+                z=0;
+            }
+            if(z==4){
+                string razadelete;
+                cout<<"Ingrese el nombre del la raza a eliminar: "<<endl;
+                cin>>razadelete;
+                for (auto i = listaRazas.begin(); i!=listaRazas.end(); ++i){
+                    if (i->nombre == razadelete){
+                        listaRazas.erase(i);
+                        break;
+                    cout<<"Raza eliminada exitosamente"<<endl;                        
+                    }
+                    else{
+                        cout<<"Raza no encontrada en la lista"<<endl;
+                    }
+                    
+                }
+                z=0;
+            }
+            if(z==5){
+                x=0;
+            }
+        }
+      
+     }
+    if(x==3){
+        w=0;
+        while(w==0){
+            cout<<"- Crear objeto (1)"<<endl;
+            cout<<"- Mostrar objetos (2)"<<endl;
+            cout<<"- Modificar un objetp (3)"<<endl;
+            cout<<"- Eliminar un objeto (4)"<<endl;
+            cout<<"- Regresar al Menu Principal (5)"<<endl;
+            cin>>w;
+            switch(w); 
+            
+            if(w==1){
+                //Ingresar los accesorios
+                cout<<"Ingrese el nombre del accesorio: "<<"\n";
+                string nombreO;
+                cin>>nombreO;
+                tObj nuevoAccesorio;
+                nuevoAccesorio.nombre=nombreO;
+                cout<<"Ingrese el tipo de accesorio (ataque, defensa, supervivencia o acondicionamiento): "<<"\n";
+                string tipo;
+                cin>>tipo;
+                nuevoAccesorio.tipo=tipo;
+                cout<<"Ingrese el porcentaje de daño, defensa o recuperacion del objeto (en caso de ser de acondicionamiento, ingrese o): "<<"\n";
+                int valor;
+                cin>>valor;
+                nuevoAccesorio.valor=valor;
+                cout<<"En caso de ser un accesorio tipo supervivencia o acondicionamiento, ingrese el tipo de valor que recupera o el ambiente para el cual fue diseñado sino ingrese nulo: "<<"\n";
+                string tipo2;
+                cin>>tipo2;
+                nuevoAccesorio.tipo2=tipo2;
+                cout<<"Ingrese los puntos de energia que consume el accesorio"<<"\n";
+                int energiaO;
+                cin>>energiaO;
+                nuevoAccesorio.energia=energiaO;
+                cout<<"Ingrese el valor de proteccion que otorga el accesorio en caso de ser de tipo defensa (en caso de ser de otro tipo ingrese 0)"<<"\n";
+                int contenedor;
+                cin>>contenedor;
+                nuevoAccesorio.contenedor;
+                  
+                //Acesorios predeterminados
+                listaObjetos.push_back({"rifle", "ataque", 20, "nulo", 10, 0});
+                listaObjetos.push_back({"armadura", "defensa", 20, "nulo", 10, 20});
+                listaObjetos.push_back({"Energizante", "supervivencia", 20, "energia", 0, 0});
+                listaObjetos.push_back({"Botiquin", "supervivencia", 40, "vida", 20, 0});
+                listaObjetos.push_back({"Respirador", "acondicionamiento", 0, "Viltrum", 15, 0});
+                  
+                listaObjetos.push_back(nuevoAccesorio);
+                cout<<"Objeto creado exitosamente"<<endl;
+                w=0;
+            }
+            if(w==2){
+                //mostrar lista de objetos
+                cout<<"lista de objetos: \n";
+                for(const auto& obj : listaObjetos){
+                    cout<<obj.nombre<<", "<<obj.tipo<<", "<<obj.valor<<", "<<obj.tipo2<<", "<<obj.energia<<", "<<obj.contenedor<<"\n";
+                }
+                w=0;
+            }
+            if(w==3){
+                string objmod;
+                cout<<"Ingrese el nombre del objeto que desea modificar: "<<endl;
+                cin>>objmod;
+                
+                for(auto& obj : listaObjetos){
+                    if (obj.nombre==objmod){
+                        cout<<"Ingrese el nuevo nombre del objeto"<<endl;
+                        cin>>obj.nombre;
+                        cout<<"Ingrese el nuevo tipo del objeto"<<endl;
+                        cin>>obj.tipo;
+                        cout<<"Ingrese el nuevo valor del objeto"<<endl;
+                        cin>>obj.valor;
+                        cout<<"En caso de ser un accesorio tipo supervivencia o acondicionamiento, ingrese el nuevo tipo de valor que recupera o el ambiente para el cual fue diseñado sino ingrese nulo"<<endl;
+                        cin>>obj.tipo2;
+                        cout<<"Ingrese la nueva cantidad de energia que consume el objeto"<<endl;
+                        cin>>obj.energia;
+                        cout<<"Ingrese el nuevo valor del objeto"<<endl;
+                        cin>>obj.valor;
+                        cout<<"Ingrese el nuevo valor de proteccion que otorga el accesorio en caso de ser de tipo defensa (en caso de ser de otro tipo ingrese 0)"<<endl;
+                        cout<<"Raza modificada exitosamente"<<endl;
+                        break;
+                    }
+                }
+                w=0;
+                
+            }
+            if(w==4){
+                string objdelete;
+                cout<<"Ingrese el nombre del objeto a eliminar: "<<endl;
+                cin>>objdelete;
+                for (auto i = listaObjetos.begin(); i!=listaObjetos.end(); ++i){
+                    if (i->nombre == objdelete){
+                        listaObjetos.erase(i);
+                        break;
+                    cout<<"Objetos eliminado exitosamente"<<endl;                        
+                    }
+                    else{
+                        cout<<"Objeto no encontrad en la lista"<<endl;
+                    }
+                    
+                }
+                z=0;
+            }
+            
+        }    
+      }
   }
-  
-  //Ingresar nueva Raza  
-  cout<<"Ingrese el nombre de la raza: "<<"\n";
-  string nombreR;
-  cin>>nombreR;
-  tRaza nuevaRaza;
-  nuevaRaza.nombre=nombreR;
-  cout<<"Ingrese los puntos vida de la raza: "<<"\n";
-  int vida;
-  cin>>vida;
-  nuevaRaza.vida=vida;
-  cout<<"Ingrese los puntos de energia de la raza de la raza: "<<"\n";
-  int energiaR;
-  cin>>energiaR;
-  nuevaRaza.energia=energiaR;
-  cout<<"Ingrese el ambiente de la raza: "<<"\n";
-  string ambiente;
-  cin>>ambiente;
-  nuevaRaza.ambiente=ambiente;
-  list<tRaza> listaRazas;
-  
-  //Razas predeterminadas
-  listaRazas.push_back(nuevaRaza);
-  
-  //Mostrar la lista de las razas
-  cout<<"lista de ambientes: \n";
-  for(const auto& amb : listaAmbiente){
-      cout<<amb.nombre<<"\n";
-  }
-  
-  cout<<"Ingrese el nombre del accesorio: "<<"\n";
-  string nombreO;
-  cin>>nombreO;
-  tObj nuevoAccesorio;
-  nuevoAccesorio.nombre=nombreO;
-  cout<<"Ingrese el tipo de accesrio (ataque, defensa, supervivencia o acondicionamiento): "<<"\n";
-  string tipo;
-  cin>>tipo;
-  nuevoAccesorio.tipo=tipo;
-  cout<<"Ingrese el porcentaje de daño, defensa o recuperacion del objeto (en caso de ser de acondicionamiento, ingrese o): "<<"\n";
-  int valor;
-  cin>>valor;
-  nuevoAccesorio.valor=valor;
-  cout<<"En caso de ser un accesorio tipo supervivencia o acondicionamiento, ingrese el tipo de valor que recupera o el ambiente para el cual fue diseñado sino ingrese 0: "<<"\n";
-  string tipo2;
-  cin>>tipo2;
-  nuevoAccesorio.tipo2=tipo2;
-  cout<<"Ingrese los puntos de energia que consume el accesorio"<<"\n";
-  int energiaO;
-  cin>>energiaO;
-  nuevoAccesorio.energia=energiaO;
-  cout<<"Ingrese el valor de proteccion que otorga el accesorio en caso de ser de tipo defensa (en caso contrario ingrese 0)"<<"\n";
-  int contenedor;
-  cin>>contenedor;
-  nuevoAccesorio.contenedor;
-  list<tObj> listaAccesorios;
-  listaAccesorios.push_back(nuevoAccesorio);
-  
+
   return 0;
 }
