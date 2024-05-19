@@ -1,0 +1,115 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <list>
+
+using namespace std;
+
+//Estructura del Ambiente
+typedef struct
+{
+  string nombre;
+} tAmb;
+//Estructura de las razas
+typedef struct
+{
+  string nombre;
+  int vida;
+  int energia;
+  string ambiente;
+} tRaza;
+//Estructura de los objetos
+typedef struct
+{
+  string nombre;
+  string tipo;
+  int valor;
+  string tipo2;
+  int energia;
+  string contenedor;
+}tObj;
+int main() {
+  cout<<"Algoritmos y Esctructura de Datos"<<"\n";
+  cout<<"Elaborado por Manuel Rosales"<<"\n";
+  cout<<"------------------------------------"<<"\n";
+  cout<<"Proyecto: Invasión Extraterreste"<<"\n";
+  cout<<"------------------------------------"<<"\n";
+  //Ingresar nuevo ambiente
+  cout<<"Ingrese el nombre del ambiente: "<<"\n";
+  string nombreA;
+  cin>>nombreA;
+  tAmb nuevoAmbiente;
+  nuevoAmbiente.nombre=nombreA;
+  list<tAmb> listaAmbiente;
+  
+  //ambientes predeterminados
+  listaAmbiente.push_back({"Tierra"});
+  listaAmbiente.push_back({"Marte"});
+  listaAmbiente.push_back({"Viltrum"});
+  listaAmbiente.push_back(nuevoAmbiente);
+  
+  //mostrar la lista completa
+  cout<<"lista de ambientes: \n";
+  for(const auto& amb : listaAmbiente){
+      cout<<amb.nombre<<"\n";
+  }
+  
+  //Ingresar nueva Raza  
+  cout<<"Ingrese el nombre de la raza: "<<"\n";
+  string nombreR;
+  cin>>nombreR;
+  tRaza nuevaRaza;
+  nuevaRaza.nombre=nombreR;
+  cout<<"Ingrese los puntos vida de la raza: "<<"\n";
+  int vida;
+  cin>>vida;
+  nuevaRaza.vida=vida;
+  cout<<"Ingrese los puntos de energia de la raza de la raza: "<<"\n";
+  int energiaR;
+  cin>>energiaR;
+  nuevaRaza.energia=energiaR;
+  cout<<"Ingrese el ambiente de la raza: "<<"\n";
+  string ambiente;
+  cin>>ambiente;
+  nuevaRaza.ambiente=ambiente;
+  list<tRaza> listaRazas;
+  
+  //Razas predeterminadas
+  listaRazas.push_back(nuevaRaza);
+  
+  //Mostrar la lista de las razas
+  cout<<"lista de ambientes: \n";
+  for(const auto& amb : listaAmbiente){
+      cout<<amb.nombre<<"\n";
+  }
+  
+  cout<<"Ingrese el nombre del accesorio: "<<"\n";
+  string nombreO;
+  cin>>nombreO;
+  tObj nuevoAccesorio;
+  nuevoAccesorio.nombre=nombreO;
+  cout<<"Ingrese el tipo de accesrio (ataque, defensa, supervivencia o acondicionamiento): "<<"\n";
+  string tipo;
+  cin>>tipo;
+  nuevoAccesorio.tipo=tipo;
+  cout<<"Ingrese el porcentaje de daño, defensa o recuperacion del objeto (en caso de ser de acondicionamiento, ingrese o): "<<"\n";
+  int valor;
+  cin>>valor;
+  nuevoAccesorio.valor=valor;
+  cout<<"En caso de ser un accesorio tipo supervivencia o acondicionamiento, ingrese el tipo de valor que recupera o el ambiente para el cual fue diseñado sino ingrese 0: "<<"\n";
+  string tipo2;
+  cin>>tipo2;
+  nuevoAccesorio.tipo2=tipo2;
+  cout<<"Ingrese los puntos de energia que consume el accesorio"<<"\n";
+  int energiaO;
+  cin>>energiaO;
+  nuevoAccesorio.energia=energiaO;
+  cout<<"Ingrese el valor de proteccion que otorga el accesorio en caso de ser de tipo defensa (en caso contrario ingrese 0)"<<"\n";
+  int contenedor;
+  cin>>contenedor;
+  nuevoAccesorio.contenedor;
+  list<tObj> listaAccesorios;
+  listaAccesorios.push_back(nuevoAccesorio);
+  
+  return 0;
+}
