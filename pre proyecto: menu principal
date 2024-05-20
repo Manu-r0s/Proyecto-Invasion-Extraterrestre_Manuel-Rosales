@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <string>
 #include <list>
 
 using namespace std;
@@ -10,6 +9,7 @@ typedef struct
 {
   string nombre;
 } tAmb;
+
 //Estructura de las razas
 typedef struct
 {
@@ -18,6 +18,7 @@ typedef struct
   int energia;
   string ambiente;
 } tRaza;
+
 //Estructura de los objetos
 typedef struct
 {
@@ -29,48 +30,56 @@ typedef struct
   int contenedor;
 }tObj;
 
+//Estructura estudiantes
+typedef struct{
+    string nombre;
+    string raza;
+    list<string> mochila;
+}tEst;
 int main() {
+    int x;int y;int z; int w; int v;
+    vector<string> mochila;
   //Lista ambiente
   list<tAmb> listaAmbiente;
   //ambientes predeterminados
-  listaAmbiente.push_back({"Tierra"});
-  listaAmbiente.push_back({"Marte"});
-  listaAmbiente.push_back({"Viltrum"});
+  listaAmbiente.push_back({"tierra"});
+  listaAmbiente.push_back({"marte"});
+  listaAmbiente.push_back({"viltrum"});
   
   //Lista Razas
   list<tRaza> listaRazas;
   //Razas predeterminadas
-  listaRazas.push_back({"Humano", 100, 100, "Tierra"});
-  listaRazas.push_back({"Marciano", 120, 90, "Marte"});
-  listaRazas.push_back({"Viltrumita", 100, 130, "Viltrum"});
+  listaRazas.push_back({"humano", 100, 100, "Tierra"});
+  listaRazas.push_back({"marciano", 120, 90, "Marte"});
+  listaRazas.push_back({"viltrumita", 100, 130, "Viltrum"});
   
   //Lista Objetos
   list<tObj> listaObjetos;
   //Acesorios predeterminados
   listaObjetos.push_back({"rifle", "ataque", 20, "nulo", 10, 0});
   listaObjetos.push_back({"armadura", "defensa", 20, "nulo", 10, 20});
-  listaObjetos.push_back({"Energizante", "supervivencia", 20, "energia", 0, 0});
-  listaObjetos.push_back({"Botiquin", "supervivencia", 40, "vida", 20, 0});
-  listaObjetos.push_back({"Respirador", "acondicionamiento", 0, "Viltrum", 15, 0});
+  listaObjetos.push_back({"energizante", "supervivencia", 20, "energia", 0, 0});
+  listaObjetos.push_back({"botiquin", "supervivencia", 40, "vida", 20, 0});
+  listaObjetos.push_back({"respirador", "acondicionamiento", 0, "Viltrum", 15, 0});
                   
+  //Lista Estudiantes
+  list<tEst> listaEstudiantes;
   
   cout<<"Algoritmos y Esctructura de Datos"<<"\n";
   cout<<"Elaborado por Manuel Rosales"<<"\n";
   cout<<"----------------------------------"<<"\n";
   cout<<"Proyecto: Invasión Extraterreste"<<"\n";
   cout<<"----------------------------------"<<"\n";
-  cout<<"        ""BIENVENIDO SOLDADO"<<endl;
-
-  int x;int y;int z; int w;
-  x=0;
-  while(x == 0){
+  cout<<"        ""BIENVENIDO JUGADOR"<<endl;
+  while(x != 0){
       cout<<"------------------------------------"<<"\n";
       cout<<"          ""Menu Principal"<<endl;
       cout<<"------------------------------------"<<"\n";
-      cout<<"- Ambiente (1)"<<endl;
+      cout<<"- Ambientes (1)"<<endl;
       cout<<"- Razas (2)"<<endl;
       cout<<"- Objetos (3)"<<endl;
-      cout<<"- Soldados (4)"<<endl;
+      cout<<"- Estudiantes (4)"<<endl;
+      cout<<"- Salir del juego (5)"<<endl;
       cin>>x;
       switch(x);
       if(x==1){
@@ -118,8 +127,10 @@ int main() {
                 
                 for(auto& amb : listaAmbiente){
                     if (amb.nombre==ambmod){
+                        cout<<"------------------------------------"<<"\n";
                         cout<<"Ingrese el nuevo nombre del ambiente"<<endl;
                         cin>>amb.nombre;
+                        cout<<"------------------------------------"<<"\n";
                         cout<<"Ambiente modificado exitosamente"<<endl;
                         cout<<"------------------------------------"<<"\n";
                         break;
@@ -135,15 +146,17 @@ int main() {
                 for (auto i = listaAmbiente.begin(); i!=listaAmbiente.end(); ++i){
                     if (i->nombre == ambdelete){
                         listaAmbiente.erase(i);
-                        break;
+                        cout<<"------------------------------------"<<"\n";
                         cout<<"Ambiente eliminado exitosamente"<<endl;
                         cout<<"------------------------------------"<<"\n";
+                        break;
+                        
                     }
                 }
                 y=0;
             }
             if(y==5){
-                x=0;
+                break;
             }
             
         }
@@ -185,6 +198,7 @@ int main() {
                 nuevaRaza.ambiente=ambiente;
                 
                 listaRazas.push_back(nuevaRaza);
+                cout<<"------------------------------------"<<"\n";
                 cout<<"Raza creada exitosamente"<<endl;
                 cout<<"------------------------------------"<<"\n";
                 z=0;
@@ -193,8 +207,11 @@ int main() {
                 //Mostrar la lista de las razas
                 cout<<"------------------------------------"<<"\n";
                 cout<<"lista de razas: \n";
+                cout<<"NOMBRE / VIDA/ ENERGIA/ AMBIENTE"<<endl;
+                cout<<"------------------------------------"<<"\n";
                 for(const auto& raza : listaRazas){
-                  cout<<raza.nombre<<", "<<raza.vida<<", "<<raza.energia<<", "<<raza.ambiente<<"\n";
+                  cout<<raza.nombre<<" / "<<raza.vida<<" / "<<raza.energia<<" / "<<raza.ambiente<<"\n";
+                  cout<<"------------------------------------"<<"\n";
                 }
                 cout<<"------------------------------------"<<"\n";
                 z=0;
@@ -207,14 +224,19 @@ int main() {
                 
                 for(auto& raza : listaRazas){
                     if (raza.nombre==razamod){
+                        cout<<"------------------------------------"<<"\n";
                         cout<<"Ingrese el nuevo nombre de la raza"<<endl;
                         cin>>raza.nombre;
+                        cout<<"------------------------------------"<<"\n";
                         cout<<"Ingrese la nueva vida de la raza"<<endl;
                         cin>>raza.vida;
+                        cout<<"------------------------------------"<<"\n";
                         cout<<"Ingrese la nueva energia de la raza"<<endl;
                         cin>>raza.energia;
+                        cout<<"------------------------------------"<<"\n";
                         cout<<"Ingrese el nuevo ambiente de la raza"<<endl;
                         cin>>raza.ambiente;
+                        cout<<"------------------------------------"<<"\n";
                         cout<<"Raza modificada exitosamente"<<endl;
                         cout<<"------------------------------------"<<"\n";
                         break;
@@ -230,16 +252,18 @@ int main() {
                 for (auto i = listaRazas.begin(); i!=listaRazas.end(); ++i){
                     if (i->nombre == razadelete){
                         listaRazas.erase(i);
+                        cout<<"------------------------------------"<<"\n";
+                        cout<<"Raza eliminada exitosamente"<<endl;
+                        cout<<"------------------------------------"<<"\n";
                         break;
-                    cout<<"Raza eliminada exitosamente"<<endl;
-                    cout<<"------------------------------------"<<"\n";
                 }
-                z=0;
+            }
+            z=0;
             }
             if(z==5){
                 break;
             }
-        }
+        
         }
       
      }
@@ -248,7 +272,7 @@ int main() {
         while(w==0){
             cout<<"- Crear objeto (1)"<<endl;
             cout<<"- Mostrar objetos (2)"<<endl;
-            cout<<"- Modificar un objetp (3)"<<endl;
+            cout<<"- Modificar un objeto (3)"<<endl;
             cout<<"- Eliminar un objeto (4)"<<endl;
             cout<<"- Regresar al Menu Principal (5)"<<endl;
             cin>>w;
@@ -268,7 +292,7 @@ int main() {
                 cin>>tipo;
                 nuevoAccesorio.tipo=tipo;
                 cout<<"------------------------------------"<<"\n";
-                cout<<"Ingrese el porcentaje de daño, defensa o recuperacion del objeto (en caso de ser de acondicionamiento, ingrese o): "<<"\n";
+                cout<<"Ingrese el porcentaje de daño, defensa o recuperacion del objeto (en caso de ser de acondicionamiento, ingrese 0): "<<"\n";
                 int valor;
                 cin>>valor;
                 nuevoAccesorio.valor=valor;
@@ -286,7 +310,7 @@ int main() {
                 cout<<"Ingrese el valor de proteccion que otorga el accesorio en caso de ser de tipo defensa (en caso de ser de otro tipo ingrese 0)"<<"\n";
                 int contenedor;
                 cin>>contenedor;
-                nuevoAccesorio.contenedor;
+                nuevoAccesorio.contenedor=contenedor;
                   
                 
                 listaObjetos.push_back(nuevoAccesorio);
@@ -296,10 +320,11 @@ int main() {
             }
             if(w==2){
                 //mostrar lista de objetos
-                cout<<"------------------------------------"<<"\n";
                 cout<<"lista de objetos: \n";
+                cout<<"NOMBRE / TIPO / VALOR / ESPECIFICACION / ENERGIA / DEFENSA"<<endl;
+                cout<<"------------------------------------"<<"\n";
                 for(const auto& obj : listaObjetos){
-                    cout<<obj.nombre<<", "<<obj.tipo<<", "<<obj.valor<<", "<<obj.tipo2<<", "<<obj.energia<<", "<<obj.contenedor<<"\n";
+                    cout<<obj.nombre<<" / "<<obj.tipo<<" / "<<obj.valor<<" / "<<obj.tipo2<<" / "<<obj.energia<<" / "<<obj.contenedor<<"\n";
                     cout<<"------------------------------------"<<"\n";
                 }
                 w=0;
@@ -319,7 +344,7 @@ int main() {
                         cout<<"Ingrese el nuevo tipo del objeto"<<endl;
                         cin>>obj.tipo;
                         cout<<"------------------------------------"<<"\n";
-                        cout<<"Ingrese el nuevo valor del objeto"<<endl;
+                        cout<<"Ingrese el nuevo porcentaje de daño, defensa o recuperacion del objeto (en caso de ser de acondicionamiento, ingrese 0): "<<endl;
                         cin>>obj.valor;
                         cout<<"------------------------------------"<<"\n";
                         cout<<"En caso de ser un accesorio tipo supervivencia o acondicionamiento, ingrese el nuevo tipo de valor que recupera o el ambiente para el cual fue diseñado sino ingrese nulo"<<endl;
@@ -328,11 +353,10 @@ int main() {
                         cout<<"Ingrese la nueva cantidad de energia que consume el objeto"<<endl;
                         cin>>obj.energia;
                         cout<<"------------------------------------"<<"\n";
-                        cout<<"Ingrese el nuevo valor del objeto"<<endl;
-                        cin>>obj.valor;
-                        cout<<"------------------------------------"<<"\n";
                         cout<<"Ingrese el nuevo valor de proteccion que otorga el accesorio en caso de ser de tipo defensa (en caso de ser de otro tipo ingrese 0)"<<endl;
-                        cout<<"Raza modificada exitosamente"<<endl;
+                        cin>>obj.contenedor;
+                        cout<<"------------------------------------"<<"\n";
+                        cout<<"Objeto modificado exitosamente"<<endl;
                         cout<<"------------------------------------"<<"\n";
                         break;
                         
@@ -349,14 +373,198 @@ int main() {
                 for (auto i = listaObjetos.begin(); i!=listaObjetos.end(); ++i){
                     if (i->nombre == objdelete){
                         listaObjetos.erase(i);
+                         cout<<"------------------------------------"<<"\n";
+                         cout<<"Objeto eliminado exitosamente"<<endl;
+                         cout<<"------------------------------------"<<"\n";
                         break;
-                    cout<<"Objetos eliminado exitosamente"<<endl;
-                    cout<<"------------------------------------"<<"\n";
+                    }
                 }
-                z=0;
-                }
+                w=0;
+            }
+            if(w==5){
+                break;
             }
         }    
+      }
+      if(x==4){
+          v=0;
+          while(v==0){
+            cout<<"- Crear Estudiante (1)"<<endl;
+            cout<<"- Mostrar Estudiantes (2)"<<endl;
+            cout<<"- Modificar un Estudiante (3)"<<endl;
+            cout<<"- Eliminar un Estudiante (4)"<<endl;
+            cout<<"- Regresar al Menu Principal (5)"<<endl;
+            cin>>v;
+            switch(v);
+          
+            if(v==1){
+                cout<<"Escribe el nombre del estudiante: "<<endl;
+                string nombreE;
+                cin>>nombreE;
+                tEst nuevoEstudiante;
+                nuevoEstudiante.nombre=nombreE;
+                cout<<"------------------------------------"<<"\n";
+                cout<<"Determina la raza del Estudiante: "<<endl;
+                cout<<"------------------------------------"<<"\n";
+                cout<<"lista de razas: \n";
+                cout<<"NOMBRE / VIDA/ ENERGIA/ AMBIENTE"<<endl;
+                cout<<"------------------------------------"<<"\n";
+                for(const auto& raza : listaRazas){
+                  cout<<raza.nombre<<" / "<<raza.vida<<" / "<<raza.energia<<" / "<<raza.ambiente<<"\n";
+                  cout<<"------------------------------------"<<"\n";
+                }
+                cout<<"Escoja unicamente de esta lista de razas"<<endl;
+                string razaE;
+                cin>>razaE;
+                nuevoEstudiante.raza=razaE;
+                cout<<"------------------------------------"<<"\n";
+                cout<<"Seleccione los 5 objetos de su mochila: "<<endl;
+                cout<<"lista de objetos: \n";
+                cout<<"NOMBRE / TIPO / VALOR / ESPECIFICACION / ENERGIA / DEFENSA"<<endl;
+                cout<<"------------------------------------"<<"\n";
+                for(const auto& obj : listaObjetos){
+                    cout<<obj.nombre<<" / "<<obj.tipo<<" / "<<obj.valor<<" / "<<obj.tipo2<<" / "<<obj.energia<<" / "<<obj.contenedor<<"\n";
+                    cout<<"------------------------------------"<<"\n";
+                }
+                cout<<"Escoja unicamente de esta lista de objetos"<<endl;
+                cout<<"Ingrese el primer objeto a la mochila:"<<endl;
+                string mochila1;
+                cin>>mochila1;
+                mochila.push_back(mochila1);
+                cout<<"------------------------------------"<<"\n";
+                
+                cout<<"Ingrese el segundo objeto a la mochila:"<<endl;
+                string mochila2;
+                cin>>mochila2;
+                mochila.push_back(mochila2);
+                cout<<"------------------------------------"<<"\n";
+                
+                cout<<"Ingrese el tercer objeto a la mochila:"<<endl;
+                string mochila3;
+                cin>>mochila3;
+                mochila.push_back(mochila3);
+                cout<<"------------------------------------"<<"\n";
+            
+                cout<<"Ingrese el cuarto objeto a la mochila:"<<endl;
+                string mochila4;
+                cin>>mochila4;
+                mochila.push_back(mochila4);
+                cout<<"------------------------------------"<<"\n";
+                
+                cout<<"Ingrese el quinto objeto a la mochila:"<<endl;
+                string mochila5;
+                cin>>mochila5;
+                mochila.push_back(mochila5);
+                cout<<"------------------------------------"<<"\n";
+                listaEstudiantes.push_back(nuevoEstudiante);
+                cout<<"Estudiante creado exitosamente"<<endl;
+                cout<<"------------------------------------"<<"\n";
+                v=0;
+            }
+            if(v==2){
+                //mostrar lista de Estudiantes
+                cout<<"------------------------------------"<<"\n";
+                cout<<"lista de Estudiantes: \n";
+                cout<<"NOMBRE / RAZA"<<endl;
+                for(const auto& est : listaEstudiantes){
+                    cout<<est.nombre<<" / "<<est.raza<<endl;
+                    cout<<"Mochila:"<<endl;
+                    for(const auto& moch : mochila){
+                        cout<<moch<<" / ";
+                    }
+                    cout<<endl;
+                    cout<<"------------------------------------"<<"\n";
+                }
+                v=0;
+            }
+            if(v==3){
+                string estmod;
+                cout<<"------------------------------------"<<"\n";
+                cout<<"Ingrese el nombre del estudiante que desea modificar: "<<endl;
+                cin>>estmod;
+                
+                for(auto& est : listaEstudiantes){
+                    if (est.nombre==estmod){
+                        cout<<"Ingrese el nuevo nombre del estudiante"<<endl;
+                        cin>>est.nombre;
+                        cout<<"Ingrese la nueva raza del estudiante"<<endl;
+                        cout<<"------------------------------------"<<"\n";
+                        cout<<"lista de razas: \n";
+                        cout<<"NOMBRE / VIDA/ ENERGIA/ AMBIENTE"<<endl;
+                        cout<<"------------------------------------"<<"\n";
+                        for(const auto& raza : listaRazas){
+                        cout<<raza.nombre<<" / "<<raza.vida<<" / "<<raza.energia<<" / "<<raza.ambiente<<"\n";
+                        cout<<"------------------------------------"<<"\n";
+                        }
+                        
+                        cin>>est.raza;
+                        cout<<"------------------------------------"<<"\n";
+                        cout<<"Ingrese los nuevos objetos a la mochila"<<endl;
+                        for(const auto& obj : listaObjetos){
+                            cout<<obj.nombre<<", "<<obj.tipo<<", "<<obj.valor<<", "<<obj.tipo2<<", "<<obj.energia<<", "<<obj.contenedor<<"\n";
+                        cout<<"------------------------------------"<<"\n";
+                        }
+                        cout<<"Ingrese el nuevo primer objeto a la mochila:"<<endl;
+                        string mochila1;
+                        cin>>mochila1;
+                        mochila.push_back(mochila1);
+                        cout<<"------------------------------------"<<"\n";
+                        
+                        cout<<"Ingrese el nuevo segundo objeto a la mochila:"<<endl;
+                        string mochila2;
+                        cin>>mochila2;
+                        mochila.push_back(mochila2);
+                        cout<<"------------------------------------"<<"\n";
+                        
+                        cout<<"Ingrese el nuevo tercer objeto a la mochila:"<<endl;
+                        string mochila3;
+                        cin>>mochila3;
+                        mochila.push_back(mochila3);
+                        cout<<"------------------------------------"<<"\n";
+                    
+                        cout<<"Ingrese el nuevo cuarto objeto a la mochila:"<<endl;
+                        string mochila4;
+                        cin>>mochila4;
+                        mochila.push_back(mochila4);
+                        cout<<"------------------------------------"<<"\n";
+                        
+                        cout<<"Ingrese el nuevo quinto objeto a la mochila:"<<endl;
+                        string mochila5;
+                        cin>>mochila5;
+                        mochila.push_back(mochila5);
+                        cout<<"------------------------------------"<<"\n";
+                        cout<<"Estudiante modificado exitosamente"<<endl;
+                        cout<<"------------------------------------"<<"\n";
+                        break;
+                    }
+                }
+                v=0;
+            }
+            if(v==4){
+                string estdelete;
+                cout<<"------------------------------------"<<"\n";
+                cout<<"Ingrese el nombre del estudiante a eliminar: "<<endl;
+                cin>>estdelete;
+                for (auto i = listaEstudiantes.begin(); i!=listaEstudiantes.end(); ++i){
+                    if (i->nombre == estdelete){
+                        listaEstudiantes.erase(i);
+                        cout<<"------------------------------------"<<"\n";
+                         cout<<"Estudiante eliminado exitosamente"<<endl;
+                         cout<<"------------------------------------"<<"\n";
+                        break;
+                    }
+                }
+                v=0;
+            }
+            if(v==5){
+                break;
+            }
+          
+          }
+      
+      }
+      if(x==5){
+          break;
       }
   }
 
